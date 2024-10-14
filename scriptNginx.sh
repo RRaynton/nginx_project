@@ -1,9 +1,7 @@
 #!/bin/bash
 
 STATUS=$(systemctl status nginx | grep -i 'active')
-STATUS_INI=${STATUS#*A*: }
-STATUS_MID=${STATUS_INI%)*}
-STATUS="$STATUS_MID)"
+STATUS=${STATUS#*A*: } && STATUS="${STATUS%)*})"
 
 NOME=$(whoami)
 HORA=$(uptime | sed 's/u.*//') 
@@ -17,18 +15,16 @@ elif [ "$STATUS" == "inactive (dead)" ]; then
 else
 	RESULTADO=$STATUS;
 fi
-sudo touch status.txt
-sudo chmod 777 status.txt
+
+touch status.txt
 echo "Nome de usuário: $NOME" >> /var/www/html/status.txt
 echo "Hora atual: $HORA" >> /var/www/html/status.txt
 echo -e "Nginx:$RESULTADO \n" >> /var/www/html/status.txt
 
 ## PARTE ONLINE
 
-sudo rm -rf /var/www/html/index.html
-sudo touch /var/www/html/index.html
-sudo chmod 777 /var/www/html/index.html
-sudo echo -e "<!DOCTYPE html>
+touch /var/www/html/index.html
+echo -e "<!DOCTYPE html>
 <html>
  <head>
   <meta charset='utf-8'/>
@@ -83,4 +79,4 @@ sudo echo -e "<!DOCTYPE html>
    </div>
   </section>
  </body>
-</html>" >> /var/www/html/index.html
+</html>" > /var/www/html/index.html
