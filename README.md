@@ -192,3 +192,53 @@ Agora o comando é executado automaticamente a cada 5 minutos, como pode-se nota
 
 <div align="center"> <img src=".images/img22-statCrontab.png" width = "40%" /> </div>
 
+# 5- Versionamento (GIT)
+
+Para gerenciar e documentar o projeto, utiliza-se do git junto ao github. Instala-se o git e informa o nome de usuário e o email para suas configurações. Será utilizada uma chave ssh para conectar o terminal ao github, deve-se gerar a chave, onde é gerada uma chave pública e uma chave privada.
+
+~~~bash
+apt-get update
+apt-get install git
+git config --global user.name "name"
+git config --global user.email "email@domain.com"
+ssh-keygen -t ed25519 -C "email@domain.com"
+chmod 600 ~/.ssh/id_ed25519
+ssh-add ~/.ssh/id_ed25519
+~~~
+
+No github, em **settings** -> **SSH and GPG keys**, adiciona-se a chave publica que estará no diretório **.ssh/id_ed25519.pub**. Para adicionar a chave, basta clicar em **New SSH Key** e inserir a chave, sem o email. Após esse processo, conecta-se ao github com o comando
+
+~~~bash
+ssh -T git@github.com
+~~~
+
+Após a conexão estabelecida, basta clonar o repositório a partir da chave ssh. 
+
+~~~bash
+git clone git@github.com:User/project
+~~~
+
+Com o git devidamente clonado, o projeto deve estar na pasta do projeto e este deve estar sendo observado pelo git, com o uso do:
+
+~~~bash
+git init
+~~~
+
+Para subir alterações, deve-se primeiramente adicionar o arquivo aos supervisionados, depois commitar indicando uma mensagem informativa sobre a alteração e depois subir a alteração.
+
+~~~bash
+git add arquivo.extensão
+git commit -m "Mensagem do commit"
+git push
+~~~
+
+Caso sejam realizadas alterações pelo github, para ter essas alterações na máquina local utiliza-se o:
+
+~~~bash
+git pull
+~~~
+
+
+# Conclusão
+
+Com este projeto foi possível colocar em prática os conhecimentos de comandos linux junto a criação de um script em bash. Além do aprendizado em sistemas linux, também foi possível aprender sobre o versionamento de código utilizando o git para tal função.
