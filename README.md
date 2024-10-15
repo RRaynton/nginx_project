@@ -8,8 +8,8 @@ Para utilizar uma distribuição Linux e executar seus binários e scripts no Wi
 
 Primeiramente, deve-se atualizar o kernel do Linux para WSL, instalando o seguinte pacote:[ https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi). Após a instalação, deve-se garantir que o wsl esteja atualizado. Para isso abre-se o PowerShell do Windows como administrador:
 
-<img src=".images/img1-psAdm.png"
-width = "70%" />
+<center><img src=".images/img1-psAdm.png"
+width = "70%" /></center>
 
 Com o PowerShell aberto, utiliza-se o comando
 
