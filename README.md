@@ -11,7 +11,7 @@ Primeiramente, deve-se atualizar o kernel do Linux para WSL, instalando o seguin
 Com o PowerShell aberto, utiliza-se o comando
 
 ~~~bash
-	wsl --update
+wsl --update
 ~~~
 
 ## Instalação do UBUNTU no WSL
@@ -19,7 +19,7 @@ Com o PowerShell aberto, utiliza-se o comando
 Após a atualização, instala-se o Linux na versão desejada com o comando:
 
 ~~~bash
-	wsl --install -d <distroName>
+wsl --install -d <distroName>
 ~~~
 
 Onde no lugar de <distroName> deve-se inserir uma das opções fornecidas:
@@ -27,7 +27,7 @@ Onde no lugar de <distroName> deve-se inserir uma das opções fornecidas:
 Como deseja-se instalar o Ubuntu-22.04, utiliza-se
 
 ~~~bash
-	wsl --install -d Ubuntu-22.04
+wsl --install -d Ubuntu-22.04
 ~~~
 
 Assim que concluir a instalação, deve-se reiniciar o computador e o Ubuntu estará pronto para a utilização.
@@ -46,13 +46,13 @@ Para ter acesso root, utiliza-se o comando **sudo su**, desta forma o usuário p
 Para a instalação do **NGINX**, pode-se seguir a documentação fornecida em <https://ubuntu.com/tutorials/install-and-configure-nginx#2-installing-nginx>, inicialmente se faz o update dos pacotes com o comando:
 
 ~~~bash
-	apt-get update
+apt-get update
 ~~~
 
 Depois realiza-se a instalação do nginx com o comando:
 
 ~~~bash
-	apt-get install nginx
+apt-get install nginx
 ~~~
 
 Após a instalação, o nginx estará funcionando, basta entrar em um navegador e abrir o **localhost** que apresentará a seguinte tela
@@ -62,20 +62,20 @@ Após a instalação, o nginx estará funcionando, basta entrar em um navegador 
 Com o nginx funcionando, alguns diretórios são importantes para seu funcionamento. primeiramente seu arquivo de configuração está em **/etc/nginx/sites-enabled/default** indicando a porta em que será ouvido, qual a pasta raíz dos arquivos e qual a ordem de nomes para o arquivo a ser lido. 
 
 ~~~bash
-	server {
-		listen 80 default\_server;
-		listen [::]:80 default\_server;
-		root /var/www/html;
+server {
+	listen 80 default\_server;
+	listen [::]:80 default\_server;
+	root /var/www/html;
 
-		index index.html index.htm index.nginx-debian.html;
+	index index.html index.htm index.nginx-debian.html;
 
-		server\_name \_;
+	server\_name \_;
 
-		location / {
-
-		}
+	location / {
 
 	}
+
+}
 ~~~
 
 Este arquivo será importante para informar o arquivo html a ser lido por padrão. Outro diretório importante está em **/var/www/html**, informado como root. Neste diretório deverá estar a página a ser apresentada pelo nginx. Para a leitura da página, o arquivo a ser aberto seguirá a ordem informada **index index.html index.htm index.nginx-debian.html**, onde inicialmente procura um arquivo **index,** caso exista, ele é aberto, caso não, se procura um arquivo **index.html** e assim sucessivamente nessa lista.
@@ -87,13 +87,13 @@ Este arquivo será importante para informar o arquivo html a ser lido por padrã
 Antes de escrever o script, é importante verificar onde serão colhidas as informações necessárias. Para observar o status do serviço nginx, utiliza-se o comando:
 
 ~~~bash
-	systemctl status nginx
+systemctl status nginx
 ~~~
 
 Como pode-se notar que na seção **Active:** é apresentado o status do serviço, com ajuda do comando grep, é possível ter apenas a informação da linha Active.
 
 ~~~bash
-	systemctl status nginx | grep -i "active"
+systemctl status nginx | grep -i "active"
 ~~~
 
 Para o nome do usuário que está realizando a tarefa, utiliza-se o whoami, que informa o usuário atual no sistema:
@@ -111,8 +111,8 @@ sed ‘s/ TextoAntes / TextoDepois /’
 Cria-se uma nova pasta para o projeto e nessa pasta cria-se o script:
 
 ~~~bash
-	mkdir nginx\_project
-	touch scriptNginx.sh
+mkdir nginx\_project
+touch scriptNginx.sh
 ~~~
 
 Com o auxílio do VIM, edita-se o arquivo iniciando com #!/bin/bash indicando que este é um script bash.
