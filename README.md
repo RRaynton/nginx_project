@@ -8,11 +8,15 @@ Para utilizar uma distribuição Linux e executar seus binários e scripts no Wi
 
 Primeiramente, deve-se atualizar o kernel do Linux para WSL, instalando o seguinte pacote:[ https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi). Após a instalação, deve-se garantir que o wsl esteja atualizado. Para isso abre-se o PowerShell do Windows como administrador:
 
+![](img1-psAdm.png)
+
 Com o PowerShell aberto, utiliza-se o comando
 
 ~~~bash
 wsl --update
 ~~~
+
+![](img1-psAdm.png)
 
 ## Instalação do UBUNTU no WSL
 
