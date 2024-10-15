@@ -5,23 +5,23 @@ STATUS=${STATUS#*A*: } && STATUS="${STATUS%)*})"	#Salva tudo após o ": " e ante
 							#"    Active: active (running) data..." -> "active (running" -> "active (running)"
 							#"    Active: inactive (dead) data..." -> "inactive (dead" -> "inactive (dead)"
 
-NOME=$(whoami)			#Captura o nome do usuário
-HORA=$(uptime | sed 's/u.*//')	#Captura a hora atual, como uptime retorna "hh:mm:ss up hh:mm ..."
-				#Utiliza-se o sed para trocar o texto iniciando no "u" até o final, por vazio.
-				#"hh:mm:ss up hh:mm ..." -> "hh:mm:ss "
+NOME=$(whoami)						#Captura o nome do usuário
+HORA=$(uptime | sed 's/u.*//')				#Captura a hora atual, como uptime retorna "hh:mm:ss up hh:mm ..."
+							#Utiliza-se o sed para trocar o texto iniciando no "u" até o final, por vazio.
+							#"hh:mm:ss up hh:mm ..." -> "hh:mm:ss "
+
+if [ "$STATUS" == "active (running)" ]; then		#Se o status for ativo
+	RESULTADO=" O Nginx está funcionando!"		#A resposta será que o Nginx está funcionando
+elif [ "$STATUS" == "inactive (dead)" ]; then		#Se não for ativo e for inativo
+	RESULTADO=" O Nginx está inativo!"		#A resposta será que o Nginx está inativo
+else							#caso não seja nem ativo nem inativo
+	RESULTADO=$STATUS;				#Resultado será o status encontrado
+fi
 
 ## PARTE OFFLINE
 
-if [ "$STATUS" == "active (running)" ]; then	#Se o status for ativo
-	RESULTADO=" O Nginx está funcionando!"	#A resposta será que o Nginx está funcionando
-elif [ "$STATUS" == "inactive (dead)" ]; then	#Se não for ativo e for inativo
-	RESULTADO=" O Nginx está inativo!"	#A resposta será que o Nginx está inativo
-else						#caso não seja nem ativo nem inativo
-	RESULTADO=$STATUS;			#Resultado será o status encontrado
-fi
-
 sudo touch /var/log/status.log				#Cria ou atualiza o status.log
-sudo chmod 777 /var/log/status.log	
+sudo chmod 666 /var/log/status.log	
 echo "Nome de usuário: $NOME" >> /var/log/status.log	#Salva o nome de usuário no arquivo de log
 echo "Hora atual: $HORA" >> /var/log/status.log		#Salva a hora atual no arquivo de log
 echo -e "Nginx:$RESULTADO \n" >> /var/log/status.log	#Salva o status do nginx no arquivo de log
@@ -29,7 +29,7 @@ echo -e "Nginx:$RESULTADO \n" >> /var/log/status.log	#Salva o status do nginx no
 ## PARTE ONLINE
 
 sudo touch /var/www/html/index.html				#Cria ou atualiza a página html index.html
-sudo chmod 777 /var/www/html/index.html
+sudo chmod 666 /var/www/html/index.html
 echo -e "<!DOCTYPE html>
 <html>
  <head>
