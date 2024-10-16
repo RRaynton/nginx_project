@@ -8,7 +8,7 @@ Para utilizar uma distribuição Linux e executar seus binários e scripts no Wi
 
 Primeiramente, deve-se atualizar o kernel do Linux para WSL, instalando o seguinte pacote:[ https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi). Após a instalação, deve-se garantir que o wsl esteja atualizado. Para isso abre-se o PowerShell do Windows como administrador:
 
-<div align="center"> <img src=".images/img1-psAdm.png" width = "70%" /> </div>
+<div align="center"> <img src="images/img1-psAdm.png" width = "70%" /> </div>
 
 Com o PowerShell aberto, utiliza-se o comando
 
@@ -16,7 +16,7 @@ Com o PowerShell aberto, utiliza-se o comando
 wsl --update
 ~~~
 
-<div align="center"> <img src=".images/img2-wslUp.png" width = "70%" /> </div>
+<div align="center"> <img src="images/img2-wslUp.png" width = "70%" /> </div>
 
 ## 1.3- Instalação do UBUNTU no WSL
 
@@ -28,7 +28,7 @@ wsl --install -d <distroName>
 
 Onde no lugar de <distroName> deve-se inserir uma das opções fornecidas:
 
-<div align="center"> <img src=".images/img3-distros.png" width = "70%" /> </div>
+<div align="center"> <img src="images/img3-distros.png" width = "70%" /> </div>
 
 Como deseja-se instalar o Ubuntu-22.04, utiliza-se
 
@@ -36,21 +36,21 @@ Como deseja-se instalar o Ubuntu-22.04, utiliza-se
 wsl --install -d Ubuntu-22.04
 ~~~
 
-<div align="center"> <img src=".images/img4-ubInst.png" width = "40%" /> </div>
+<div align="center"> <img src="images/img4-ubInst.png" width = "40%" /> </div>
 
 Assim que concluir a instalação, deve-se reiniciar o computador e o Ubuntu estará pronto para a utilização.
 
-<div align="center"> <img src=".images/img5-UbApp.png" width = "70%" /> </div>
+<div align="center"> <img src="images/img5-UbApp.png" width = "70%" /> </div>
 
 ## 1.4- Configuração do UBUNTU no WSL
 
 Ao abrir, começa o processo de criação do ambiente de trabalho, onde deve-se informar o nome de usuário padrão e senha para que assim seja criado e o Linux esteja pronto para uso.
 
-<div align="center"> <img src=".images/img6-ubCred.png" width = "70%" /> </div>
+<div align="center"> <img src="images/img6-ubCred.png" width = "70%" /> </div>
 
 Para ter acesso root, utiliza-se o comando **sudo su**, desta forma o usuário passa a ter os privilégios de super user.
 
-<div align="center"> <img src=".images/img7-UbSu.png" width = "40%" /> </div>
+<div align="center"> <img src="images/img7-UbSu.png" width = "40%" /> </div>
 
 # 2- NGINX
 
@@ -70,7 +70,7 @@ apt-get install nginx
 
 Após a instalação, o nginx estará funcionando, basta entrar em um navegador e abrir o **localhost** que apresentará a seguinte tela
 
-<div align="center"> <img src=".images/img8-ngIni.png" width = "70%" /> </div>
+<div align="center"> <img src="images/img8-ngIni.png" width = "70%" /> </div>
 
 ## 2.2- Configurações do NGINX
 
@@ -105,7 +105,7 @@ Antes de escrever o script, é importante verificar onde serão colhidas as info
 systemctl status nginx
 ~~~
 
-<div align="center"> <img src=".images/img9-ngStatTot.png" width = "70%" /> </div>
+<div align="center"> <img src="images/img9-ngStatTot.png" width = "70%" /> </div>
 
 Como pode-se notar que na seção **Active:** é apresentado o status do serviço, com ajuda do comando grep, é possível ter apenas a informação da linha Active.
 
@@ -113,15 +113,15 @@ Como pode-se notar que na seção **Active:** é apresentado o status do serviç
 systemctl status nginx | grep -i "active"
 ~~~
 
-<div align="center"> <img src=".images/img10-ngStatLinha.png" width = "70%" /> </div>
+<div align="center"> <img src="images/img10-ngStatLinha.png" width = "70%" /> </div>
 
 Para o nome do usuário que está realizando a tarefa, utiliza-se o whoami, que informa o usuário atual no sistema:
 
-<div align="center"> <img src=".images/img11-userName.png" width = "70%" /> </div>
+<div align="center"> <img src="images/img11-userName.png" width = "70%" /> </div>
 
 Para as informações de data e hora, é possível a utilização de vários caminhos distintos, neste script será utilizado a partir do **uptime**. O uptime retorna dados de hora e de acesso:
 
-<div align="center"> <img src=".images/img12-uptTot.png" width = "70%" /> </div>
+<div align="center"> <img src="images/img12-uptTot.png" width = "70%" /> </div>
 
 O horário está sempre antes da palavra **up**, portanto, pode-se utilizar o comando sed, que tem a função de trocar um texto por outro em uma string. Neste caso, deseja-se trocar o trecho **"up 11:47, 1 user, load average: 0.00, 0.00, 0.00"** por um trecho vazio **“”**, resultando em **“21:27:19 ”**. Como esse texto pode mudar com o tempo, pode-se dizer que se deseja trocar tudo após o u **“u.\*”** por vazio. A nomenclatura se da como: 
 
@@ -129,7 +129,7 @@ O horário está sempre antes da palavra **up**, portanto, pode-se utilizar o co
 sed ‘s/ TextoAntes / TextoDepois /’
 ~~~
 
-<div align="center"> <img src=".images/img13-uptTime.png" width = "70%" /> </div>
+<div align="center"> <img src="images/img13-uptTime.png" width = "70%" /> </div>
 
 ## 3.2- Criação do script
 
@@ -145,17 +145,17 @@ Com o auxílio do VIM, edita-se o arquivo iniciando com #!/bin/bash indicando qu
 
 A variável STATUS recebe a informação do status do NGINX e para uma melhor leitura de sua informação, desejou-se ter todo o texto após os **“: ”** e antes do **“)”**, para isso, utilizou-se das ferramentas de manipulação de texto do bash, o # pega todo o texto após uma informação e o % pega todo o texto antes de uma informação.
 
-<div align="center"> <img src=".images/img14-statSpar.png" width = "70%" /> </div>
+<div align="center"> <img src="images/img14-statSpar.png" width = "70%" /> </div>
 
 Adiciona-se um “)” ao final para a informação ficar completa. O nome e a hora podem ser utilizados da mesma forma que chega ao script.
 
-<div align="center"> <img src=".images/img15-statCpar.png" width = "70%" /> </div>
+<div align="center"> <img src="images/img15-statCpar.png" width = "70%" /> </div>
 
 ## 3.3- Alteração da mensagem de status
 
-Para alteração da mensagem, trazendo assim uma informação personalizada e em português, utilizou-se de uma estrutura condicional, caso o status seja “active (running)” será uma mensagem, caso seja “inactive (dead)” será outra mensagem, também é definido o diretório para o qual irá o log. Caso possua outro status, será apresentado esse status sem alteração e será levao ao log de off.
+Para alteração da mensagem, trazendo assim uma informação personalizada e em português, utilizou-se de uma estrutura condicional, caso o status seja “active (running)” será uma mensagem, caso seja “inactive (dead)” será outra mensagem, também é definido o diretório para o qual irá o log. Caso possua outro status, será apresentado esse status sem alteração e será levado ao log de off.
 
-<div align="center"> <img src=".images/img16-scptIni.png" width = "70%" /> </div>
+<div align="center"> <img src="images/img16-scptIni.png" width = "70%" /> </div>
 
 ## 3.4- Parte offline
 
@@ -168,17 +168,17 @@ sudo touch /var/log/statusOff.log
 sudo chmod 666 /var/log/statusOff.log
 ~~~
 
-<div align="center"> <img src=".images/img17-scptOff.png" width = "70%" /> </div>
+<div align="center"> <img src="images/img17-scptOff.png" width = "70%" /> </div>
 
-<div align="center"> <img src=".images/img18-scptOffRes.png" width = "70%" /> </div>
+<div align="center"> <img src="images/img18-scptOffRes.png" width = "70%" /> </div>
 
 ## 3.5- Parte Online
 
 Para apresentar online essa informação, basta criar um arquivo html, com o nome index.html em /var/www/html e inserir neste arquivo uma página html com as informações desejadas utilizando o **> /var/www/html/index.html** e esta informação será levada para o arquivo **index.html**. Inicialmente cria-se o arquivo, ele deve ter as permissões necessárias para escrita e leitura por todos os usuários.
 
-<div align="center"> <img src=".images/img19-scptOn.png" width = "70%" /> </div>
+<div align="center"> <img src="images/img19-scptOn.png" width = "70%" /> </div>
 
-<div align="center"> <img src=".images/img20-scptOnRes.png" width = "70%" /> </div>
+<div align="center"> <img src="images/img20-scptOnRes.png" width = "70%" /> </div>
 
 # 4- Automação
 
@@ -194,11 +194,11 @@ Desta forma, para que o script rode a cada 5 minutos, basta indicar seu caminho:
 **\*/5 \* \* \* \* bash ~/nginx\_project/scriptNginx.sh**
 ~~~
 
-<div align="center"> <img src=".images/img21-crontab.png" width = "70%" /> </div>
+<div align="center"> <img src="images/img21-crontab.png" width = "70%" /> </div>
 
 Agora o comando é executado automaticamente a cada 5 minutos, como pode-se notar no status.log
 
-<div align="center"> <img src=".images/img22-statCrontab.png" width = "40%" /> </div>
+<div align="center"> <img src="images/img22-statCrontab.png" width = "40%" /> </div>
 
 # 5- Versionamento (GIT)
 
