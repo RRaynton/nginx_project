@@ -198,7 +198,7 @@ Desta forma, para que o script rode a cada 5 minutos, basta indicar seu caminho:
 
 Agora o comando é executado automaticamente a cada 5 minutos, como pode-se notar no status.log
 
-<div align="center"> <img src="images/img22-statCrontab.png" width = "40%" /> </div>
+<div align="center"> <img src="images/img22-statCrontab.png" width = "70%" /> </div>
 
 # 5- Versionamento (GIT)
 
