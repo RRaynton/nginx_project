@@ -9,27 +9,29 @@ NOME=$(whoami)						#Captura o nome do usuário
 HORA=$(uptime | sed 's/u.*//')				#Captura a hora atual, como uptime retorna "hh:mm:ss up hh:mm ..."
 							#Utiliza-se o sed para trocar o texto iniciando no "u" até o final, por vazio.
 							#"hh:mm:ss up hh:mm ..." -> "hh:mm:ss "
+ARQ_ATUAL="/var/log"					#Define o local do arquivo atual
 
 if [ "$STATUS" == "active (running)" ]; then		#Se o status for ativo
 	RESULTADO=" O Nginx está funcionando!"		#A resposta será que o Nginx está funcionando
+	ARQ_ATUAL="$ARQ_ATUAL/statusOn.log"		#Define o arquivo atual como o ON
+
 elif [ "$STATUS" == "inactive (dead)" ]; then		#Se não for ativo e for inativo
 	RESULTADO=" O Nginx está inativo!"		#A resposta será que o Nginx está inativo
-else							#caso não seja nem ativo nem inativo
+	ARQ_ATUAL="$ARQ_ATUAL/statusOff.log"		#Define o arquivo atual como o OFF
+
+else							#Caso não seja nem ativo nem inativo
+	ARQ_ATUAL="$ARQ_ATUAL/statusOff.log"		#Caso seja um status diferente, também irá para o OFF
 	RESULTADO=$STATUS;				#Resultado será o status encontrado
 fi
 
 ## PARTE OFFLINE
 
-sudo touch /var/log/status.log				#Cria ou atualiza o status.log
-sudo chmod 666 /var/log/status.log	
-echo "Nome de usuário: $NOME" >> /var/log/status.log	#Salva o nome de usuário no arquivo de log
-echo "Hora atual: $HORA" >> /var/log/status.log		#Salva a hora atual no arquivo de log
-echo -e "Nginx:$RESULTADO \n" >> /var/log/status.log	#Salva o status do nginx no arquivo de log
+echo "Nome de usuário: $NOME" >> "$ARQ_ATUAL"	#Salva o nome de usuário no arquivo de log
+echo "Hora atual: $HORA" >> "$ARQ_ATUAL"		#Salva a hora atual no arquivo de log
+echo -e "Nginx:$RESULTADO \n" >> "$ARQ_ATUAL"	#Salva o status do nginx no arquivo de log
 
 ## PARTE ONLINE
 
-sudo touch /var/www/html/index.html				#Cria ou atualiza a página html index.html
-sudo chmod 666 /var/www/html/index.html
 echo -e "<!DOCTYPE html>
 <html>
  <head>

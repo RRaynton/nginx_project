@@ -138,6 +138,7 @@ Cria-se uma nova pasta para o projeto e nessa pasta cria-se o script:
 ~~~bash
 mkdir nginx\_project
 touch scriptNginx.sh
+sudo chmod 777 scriptNginx.sh
 ~~~
 
 Com o auxílio do VIM, edita-se o arquivo iniciando com #!/bin/bash indicando que este é um script bash.
@@ -152,13 +153,20 @@ Adiciona-se um “)” ao final para a informação ficar completa. O nome e a h
 
 ## 3.3- Alteração da mensagem de status
 
-Para alteração da mensagem, trazendo assim uma informação personalizada e em português, utilizou-se de uma estrutura condicional, caso o status seja “active (running)” será uma mensagem, caso seja “inactive (dead)” será outra mensagem, e caso possua outro status, será apresentado esse status sem alteração.
+Para alteração da mensagem, trazendo assim uma informação personalizada e em português, utilizou-se de uma estrutura condicional, caso o status seja “active (running)” será uma mensagem, caso seja “inactive (dead)” será outra mensagem, também é definido o diretório para o qual irá o log. Caso possua outro status, será apresentado esse status sem alteração e será levao ao log de off.
 
 <div align="center"> <img src=".images/img16-scptIni.png" width = "70%" /> </div>
 
 ## 3.4- Parte offline
 
-Agora para passar essa informação para um arquivo, basta utilizar **>> var/log/status.log** e esta informação será levada para o arquivo status.log. Inicialmente cria-se o arquivo, ele deve ter as permissões necessárias para escrita e leitura por todos os usuários.
+Agora para passar essa informação para um arquivo, basta utilizar **>> "$ARQ_ATUAL"** e esta informação será levada para o log desejado. Inicialmente cria-se o arquivo, ele deve ter as permissões necessárias para escrita e leitura por todos os usuários.
+
+~~~bash
+sudo touch /var/log/statusOn.log
+sudo chmod 666 /var/log/statusOn.log
+sudo touch /var/log/statusOff.log
+sudo chmod 666 /var/log/statusOff.log
+~~~
 
 <div align="center"> <img src=".images/img17-scptOff.png" width = "70%" /> </div>
 
