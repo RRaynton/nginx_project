@@ -26,9 +26,9 @@ fi
 
 ## PARTE OFFLINE
 
-echo "Nome de usuário: $NOME" >> "$ARQ_ATUAL"	#Salva o nome de usuário no arquivo de log
+echo "Nome de usuário: $NOME" >> "$ARQ_ATUAL"		#Salva o nome de usuário no arquivo de log
 echo "Hora atual: $HORA" >> "$ARQ_ATUAL"		#Salva a hora atual no arquivo de log
-echo -e "Nginx:$RESULTADO \n" >> "$ARQ_ATUAL"	#Salva o status do nginx no arquivo de log
+echo -e "Nginx:$RESULTADO \n" >> "$ARQ_ATUAL"		#Salva o status do nginx no arquivo de log
 
 ## PARTE ONLINE
 
